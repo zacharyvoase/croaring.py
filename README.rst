@@ -1,16 +1,19 @@
 CRoaring.py: Fast, compact integer bitmap sets, based on CRoaring
 =================================================================
 
-[Roaring bitmaps][] are fast, compressed, and portable bitmaps, used to
-store unique sorted integer sets. These bitmaps offer better real-world
-space complexity and performance than typical hash sets (such as
-Python's built-in ``set``), and can be serialized into a portable format
-for storage and interop with the C/C++, Java and Go libraries.
+`Roaring bitmaps <http://roaringbitmap.org/>`__ are fast, compressed,
+and portable bitmaps, used to store unique sorted integer sets. These
+bitmaps offer better real-world space complexity and performance than
+typical hash sets (such as Python's built-in ``set``), and can be
+serialized into a portable format for storage and interop with the
+C/C++, Java and Go libraries.
 
-This library makes the [CRoaring][] implementation available in Python
-2.7 and 3.5+. It uses [CFFI][], so it works on both CPython and PyPy.
-The full Python ``set`` interface is implemented. Comprehensive tests
-are included.
+This library makes the
+`CRoaring <https://github.com/RoaringBitmap/CRoaring>`__ implementation
+available in Python 2.7 and 3.5+. It uses
+`CFFI <http://cffi.readthedocs.io/en/latest/>`__, so it works on both
+CPython and PyPy. The full Python ``set`` interface is implemented.
+Comprehensive tests are included.
 
 Installation
 ------------

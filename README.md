@@ -10,6 +10,10 @@ This library makes the [CRoaring][] implementation available in Python 2.7 and
 3.5+. It uses [CFFI][], so it works on both CPython and PyPy. The full Python
 `set` interface is implemented. Comprehensive tests are included.
 
+  [Roaring bitmaps]: http://roaringbitmap.org/
+  [CRoaring]: https://github.com/RoaringBitmap/CRoaring
+  [CFFI]: http://cffi.readthedocs.io/en/latest/
+
 
 ## Installation
 
