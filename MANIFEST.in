@@ -1,0 +1,4 @@
+include LICENSING
+include croaring_build.py
+include croaring-src/roaring.c
+include croaring-src/roaring.h
