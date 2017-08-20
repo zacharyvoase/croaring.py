@@ -1,3 +1,4 @@
 [submodule "croaring-src"]
 	path = croaring-src
 	url = https://github.com/RoaringBitmap/CRoaring.git
+	ignore = dirty
