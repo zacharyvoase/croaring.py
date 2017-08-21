@@ -123,9 +123,11 @@ roaring_uint32_iterator_t * roaring_copy_uint32_iterator(const roaring_uint32_it
 void roaring_free_uint32_iterator(roaring_uint32_iterator_t *it);
 ''')
 
-FFI_BUILDER.set_source('croaring._roaring', '''
-#include "roaring.c"
-''', include_dirs=[SRC_ROOT], extra_compile_args=['-msse4.2'])
+FFI_BUILDER.set_source(
+    'croaring._roaring',
+    '#include "roaring.c"',
+    include_dirs=[SRC_ROOT],
+    extra_compile_args=['-std=c11', '-msse4.2'])
 
 if __name__ == '__main__':
     FFI_BUILDER.compile(verbose=True)
