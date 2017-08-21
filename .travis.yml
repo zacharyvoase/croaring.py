@@ -12,7 +12,9 @@ matrix:
   - python: "pypy3"
     env: TOXENV=py35
 
-install: pip install tox
+install:
+  - make amalgamation
+  - pip install tox
 
 script: tox
 
