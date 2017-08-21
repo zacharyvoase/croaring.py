@@ -1,6 +1,10 @@
 language: python
 dist: trusty
 
+compiler:
+  - clang
+  - gcc
+
 matrix:
   include:
   - python: "2.7"
