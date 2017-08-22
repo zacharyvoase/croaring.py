@@ -114,20 +114,20 @@ class RoaringBitmap(collections.MutableSet):
     __isub__ = bitmap_assign_operator(lib.roaring_bitmap_andnot_inplace)
 
     @guard
-    def __lte__(self, other):
-        return bool(lib.roaring_bitmap_is_subset(self._bitmap, other._bitmap))
-
-    @guard
-    def __gte__(self, other):
-        return other <= self
-
-    @guard
     def __lt__(self, other):
         return len(self) < len(other) and self <= other
 
     @guard
     def __gt__(self, other):
         return other < self
+
+    @guard
+    def __le__(self, other):
+        return bool(lib.roaring_bitmap_is_subset(self._bitmap, other._bitmap))
+
+    @guard
+    def __ge__(self, other):
+        return other <= self
 
     def add(self, value):
         lib.roaring_bitmap_add(self._bitmap, value)
@@ -142,8 +142,8 @@ class RoaringBitmap(collections.MutableSet):
     intersection = __and__
     difference = __sub__
     symmetric_difference = __xor__
-    issubset = __lte__
-    issuperset = __gte__
+    issubset = __le__
+    issuperset = __ge__
 
     @guard
     def isdisjoint(self, other):

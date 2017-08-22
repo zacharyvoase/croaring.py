@@ -19,6 +19,15 @@ BINARY_OPERATORS = [
 ]
 
 
+BOOLEAN_OPERATORS = [
+    (operator.eq, "=="),
+    (operator.lt, "<"),
+    (operator.gt, ">"),
+    (operator.le, "<="),
+    (operator.ge, ">="),
+]
+
+
 INPLACE_OPERATORS = [
     (operator.iand, "&="),
     (operator.ior, "|="),
@@ -62,6 +71,12 @@ def test_binary_operators():
             yield check_binary_same, op, s1, s2, name.format(op_name)
 
 
+def test_boolean_operators():
+    for op, op_name in BOOLEAN_OPERATORS:
+        for (s1, s2, name) in gen_random_set_pairs():
+            yield check_boolean_same, op, s1, s2, name.format(op_name)
+
+
 def test_inplace_operators():
     for op, op_name in INPLACE_OPERATORS:
         for (s1, s2, name) in gen_random_set_pairs():
@@ -77,6 +92,14 @@ def check_binary_same(op, set1, set2, name):
     expected = list(op(set(set1), set(set2)))
     expected.sort()
     actual = list(op(RoaringBitmap(set1), RoaringBitmap(set2)))
+    assert_equals(actual, expected, name)
+    with assert_raises(TypeError):
+        op(RoaringBitmap(set1), set(set2))
+
+
+def check_boolean_same(op, set1, set2, name):
+    expected = op(set(set1), set(set2))
+    actual = op(RoaringBitmap(set1), RoaringBitmap(set2))
     assert_equals(actual, expected, name)
     with assert_raises(TypeError):
         op(RoaringBitmap(set1), set(set2))
