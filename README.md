@@ -1,5 +1,8 @@
 # CRoaring.py: Fast, compact integer bitmap sets, based on CRoaring
 
+[![Build Status](https://travis-ci.org/zacharyvoase/croaring.py.svg?branch=master)](https://travis-ci.org/zacharyvoase/croaring.py)
+[![codecov](https://codecov.io/gh/zacharyvoase/croaring.py/branch/master/graph/badge.svg)](https://codecov.io/gh/zacharyvoase/croaring.py)
+
 [Roaring bitmaps][] are fast, compressed, and portable bitmaps, used to store
 unique sorted integer sets. These bitmaps offer better real-world space
 complexity and performance than typical hash sets (such as Python's built-in

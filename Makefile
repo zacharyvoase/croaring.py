@@ -1,7 +1,7 @@
 all: README.rst amalgamated
 
 README.rst: README.md
-	pandoc -f markdown -t rst < $^ > $@
+	cat $^ | egrep -v '^\[\!' | pandoc -f markdown -t rst > $@
 
 amalgamated: croaring-src/roaring.h croaring-src/roaring.c
 
