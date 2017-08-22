@@ -13,7 +13,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='croaring',
-    version='0.0.1',
+    version='0.0.2',
 
     description='Compressed integer sets based on Roaring bitmaps.',
     long_description=readme,
