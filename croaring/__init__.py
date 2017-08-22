@@ -40,6 +40,8 @@ class RoaringBitmap(collections.MutableSet):
 
     """An efficient integer bitmap set, based on CRoaring."""
 
+    __slots__ = ('_bitmap',)
+
     @classmethod
     def range(cls, *args):
         """Build a RoaringBitmap with arguments similar to range()."""
@@ -85,7 +87,9 @@ class RoaringBitmap(collections.MutableSet):
         return lib.roaring_bitmap_get_cardinality(self._bitmap)
 
     def __del__(self):
-        lib.roaring_bitmap_free(self._bitmap)
+        if hasattr(self, '_bitmap') and self._bitmap is not None:
+            lib.roaring_bitmap_free(self._bitmap)
+            del self._bitmap
 
     def __contains__(self, value):
         return bool(lib.roaring_bitmap_contains(self._bitmap, value))
