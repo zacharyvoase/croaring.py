@@ -59,10 +59,24 @@ def gen_random_set_pairs():
 
 
 def test_range():
+    yield check_range_same, 0
+    yield check_range_same, 10
     yield check_range_same, 0, 10
     yield check_range_same, 0, 10, 1
     yield check_range_same, 0, 10, 2
     yield check_range_same, 0, 10, 3
+
+
+def test_invalid_range():
+    yield check_invalid_range, TypeError
+    yield check_invalid_range, TypeError, 0, 1, 2, 3
+    yield check_invalid_range, ValueError, -1
+    yield check_invalid_range, ValueError, 5, 0, -1
+    yield check_invalid_range, ValueError, 0, 5, -1
+    yield check_invalid_range, ValueError, 0, 5, 0
+    yield check_invalid_range, ValueError, -1, 2
+    yield check_invalid_range, ValueError, 2, -1
+    yield check_invalid_range, ValueError, -5, -2
 
 
 def test_binary_operators():
@@ -86,6 +100,11 @@ def test_inplace_operators():
 def check_range_same(*range_args):
     range_ = six.PY2 and range or (lambda *a: list(range(*a)))
     assert_equals(list(RoaringBitmap.range(*range_args)), range_(*range_args))
+
+
+def check_invalid_range(exc, *range_args):
+    with assert_raises(exc):
+        RoaringBitmap.range(*range_args)
 
 
 def check_binary_same(op, set1, set2, name):

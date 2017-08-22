@@ -58,6 +58,9 @@ class RoaringBitmap(collections.MutableSet):
             raise ValueError("all arguments to range() must be positive")
         if step == 0:
             raise ValueError("step argument to range() cannot be zero")
+        if start >= stop:
+            # Empty set
+            return cls()
 
         return cls(lib.roaring_bitmap_from_range(start, stop, step))
 
