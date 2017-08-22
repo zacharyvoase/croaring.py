@@ -8,9 +8,9 @@ compiler:
 matrix:
   include:
   - python: "2.7"
-    env: TOXENV=py27
+    env: TOXENV=py27 NOSE_WITH_COVERAGE=true
   - python: "3.6"
-    env: TOXENV=py36
+    env: TOXENV=py36 NOSE_WITH_COVERAGE=true
   - python: "pypy"
     env: TOXENV=py27
   - python: "pypy3"
@@ -18,9 +18,10 @@ matrix:
 
 install:
   - make amalgamated
-  - pip install tox
+  - pip install codecov tox
 
 script: tox
+after_script: codecov
 
 notifications:
   email: false
