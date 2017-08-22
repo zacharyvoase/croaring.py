@@ -18,10 +18,9 @@ matrix:
 
 install:
   - make amalgamated
-  - pip install codecov tox
+  - pip install tox
 
 script: tox
-after_script: codecov
 
 notifications:
   email: false
