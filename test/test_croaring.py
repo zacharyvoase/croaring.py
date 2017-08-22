@@ -25,6 +25,20 @@ def test_smoke():
     assert 6 in bm
     assert 2 not in bm
 
+    bm.discard(1)
+    assert len(bm) == 1
+    assert list(bm) == [6]
+    assert bm
+    assert 1 not in bm
+    assert 6 in bm
+
+
+def test_invalid_args():
+    with assert_raises(TypeError):
+        RoaringBitmap(123)
+    with assert_raises(TypeError):
+        RoaringBitmap('string')
+
 
 def test_minmax():
     empty = RoaringBitmap([])
