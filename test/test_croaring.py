@@ -1,6 +1,7 @@
 import operator
 
 from nose.tools import assert_raises
+import six
 
 from croaring import RoaringBitmap
 
@@ -11,6 +12,9 @@ def test_smoke():
     assert list(bm) == []
     assert not bm
     assert 1 not in bm
+
+    printed = repr(bm)
+    assert isinstance(printed, six.string_types)
 
     bm.add(1)
     bm.add(6)
